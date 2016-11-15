@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.gs2</groupId>
 	<artifactId>gs2-java-sdk-identifier</artifactId>
-	<version>0.0.1</version>
+	<version>0.1.0</version>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -14,7 +14,7 @@
 		<dependency>
 			<groupId>io.gs2</groupId>
 			<artifactId>gs2-java-sdk-core</artifactId>
-			<version>0.0.1</version>
+			<version>0.1.0</version>
 		</dependency>
 	</dependencies>
 
@@ -165,12 +165,6 @@
 				</executions>
 			</plugin>
 		</plugins>
-		<extensions>
-			<extension>
-				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-ssh</artifactId>
-			</extension>
-		</extensions>
 	</build>
 
 	<reporting>
@@ -184,9 +178,22 @@
 
 	<repositories>
 		<repository>
-			<id>repos.maven.gs2.io</id>
-			<name>GS2 Maven Repository</name>
-			<url>http://maven.gs2.io/repos</url>
+			<id>central</id>
+			<name>Maven Repository Switchboard</name>
+			<layout>default</layout>
+			<url>http://repo1.maven.org/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>sonatype</id>
+			<name>sonatype</name>
+			<layout>default</layout>
+			<url>https://oss.sonatype.org/service/local/repositories/releases/content/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
 		</repository>
 	</repositories>
 	<distributionManagement>
