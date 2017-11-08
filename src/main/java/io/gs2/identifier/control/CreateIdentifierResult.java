@@ -1,46 +1,52 @@
+/*
+ * Copyright 2016 Game Server Services, Inc. or its affiliates. All Rights
+ * Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
 package io.gs2.identifier.control;
 
+import org.json.JSONObject;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import io.gs2.identifier.model.Identifier;
+import io.gs2.identifier.model.*;
 
 /**
- * GSIの作成結果。
- * 
  * @author Game Server Services, Inc.
- *
  */
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class CreateIdentifierResult {
-	
-	Identifier item;
-	
+
+	/** ユーザ */
+	private FullIdentifier item;
+
+
 	/**
-	 * GSIを取得。
-	 * 
-	 * @return GSI
+	 * ユーザを取得
+	 *
+	 * @return ユーザ
 	 */
-	public Identifier getItem() {
+	public FullIdentifier getItem() {
 		return item;
 	}
-	
+
 	/**
-	 * GSIを設定。
-	 * 
-	 * @param item GSI
+	 * ユーザを設定
+	 *
+	 * @param item ユーザ
 	 */
-	public void setItem(Identifier item) {
+	public void setItem(FullIdentifier item) {
 		this.item = item;
 	}
-	
-	/**
-	 * GSIを設定。
-	 * 
-	 * @param item GSI
-	 * @return this
-	 */
-	public CreateIdentifierResult withItem(Identifier item) {
-		setItem(item);
-		return this;
-	}
+
 }

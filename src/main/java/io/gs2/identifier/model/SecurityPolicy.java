@@ -1,12 +1,28 @@
+/*
+ * Copyright 2016 Game Server Services, Inc. or its affiliates. All Rights
+ * Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
 package io.gs2.identifier.model;
 
+import java.util.List;
 import java.io.Serializable;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * セキュリティポリシー
- * 
+ *
  * @author Game Server Services, Inc.
  *
  */
@@ -14,124 +30,131 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class SecurityPolicy implements Serializable {
 
-	/** セキュリティポリシー ID */
-	String securityPolicyId;
-	/** オーナーID */
-	String ownerId;
+	/** 作成日時(エポック秒) */
+	private Integer createAt;
+
 	/** セキュリティポリシー名 */
-	String name;
-	/** ポリシー */
-	String policy;
-	/** 作成日時 */
-	Long createAt;
-	/** 更新日時 */
-	Long updateAt;
-	
+	private String name;
+
+	/** セキュリティポリシーID */
+	private String securityPolicyId;
+
+	/** ポリシードキュメント */
+	private String policy;
+
+	/** オーナーID */
+	private String ownerId;
+
+	/** 最終更新日時(エポック秒) */
+	private Integer updateAt;
+
+
 	/**
-	 * セキュリティポリシー IDを取得
-	 * 
-	 * @return セキュリティポリシー ID
+	 * 作成日時(エポック秒)を取得
+	 *
+	 * @return 作成日時(エポック秒)
 	 */
-	public String getSecurityPolicyId() {
-		return securityPolicyId;
+	public Integer getCreateAt() {
+		return createAt;
 	}
-	
+
 	/**
-	 * セキュリティポリシー IDを設定
-	 * 
-	 * @param securityPolicyId セキュリティポリシー ID
+	 * 作成日時(エポック秒)を設定
+	 *
+	 * @param createAt 作成日時(エポック秒)
 	 */
-	public void setSecurityPolicyId(String securityPolicyId) {
-		this.securityPolicyId = securityPolicyId;
+	public void setCreateAt(Integer createAt) {
+		this.createAt = createAt;
 	}
-	
+
 	/**
-	 * オーナーIDを取得
-	 * 
-	 * @return オーナーID
-	 */
-	public String getOwnerId() {
-		return ownerId;
-	}
-	
-	/**
-	 * オーナーIDを設定
-	 * 
-	 * @param ownerId オーナーID
-	 */
-	public void setOwnerId(String ownerId) {
-		this.ownerId = ownerId;
-	}
-	
-	/**
-	 * ポリシー名を取得
-	 * 
-	 * @return ポリシー名
+	 * セキュリティポリシー名を取得
+	 *
+	 * @return セキュリティポリシー名
 	 */
 	public String getName() {
 		return name;
 	}
-	
+
 	/**
-	 * ポリシー名を設定
-	 * 
-	 * @param name ポリシー名
+	 * セキュリティポリシー名を設定
+	 *
+	 * @param name セキュリティポリシー名
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+	/**
+	 * セキュリティポリシーIDを取得
+	 *
+	 * @return セキュリティポリシーID
+	 */
+	public String getSecurityPolicyId() {
+		return securityPolicyId;
+	}
+
+	/**
+	 * セキュリティポリシーIDを設定
+	 *
+	 * @param securityPolicyId セキュリティポリシーID
+	 */
+	public void setSecurityPolicyId(String securityPolicyId) {
+		this.securityPolicyId = securityPolicyId;
+	}
+
 	/**
 	 * ポリシードキュメントを取得
-	 * 
+	 *
 	 * @return ポリシードキュメント
 	 */
 	public String getPolicy() {
 		return policy;
 	}
-	
+
 	/**
 	 * ポリシードキュメントを設定
-	 * 
+	 *
 	 * @param policy ポリシードキュメント
 	 */
 	public void setPolicy(String policy) {
 		this.policy = policy;
 	}
-	
+
 	/**
-	 * 作成日時を取得
-	 * 
-	 * @return 作成日時
+	 * オーナーIDを取得
+	 *
+	 * @return オーナーID
 	 */
-	public Long getCreateAt() {
-		return createAt;
+	public String getOwnerId() {
+		return ownerId;
 	}
-	
+
 	/**
-	 * 作成日時を設定
-	 * 
-	 * @param createAt 作成日時
+	 * オーナーIDを設定
+	 *
+	 * @param ownerId オーナーID
 	 */
-	public void setCreateAt(Long createAt) {
-		this.createAt = createAt;
+	public void setOwnerId(String ownerId) {
+		this.ownerId = ownerId;
 	}
-	
+
 	/**
-	 * 更新日時を取得
-	 * 
-	 * @return 更新日時
+	 * 最終更新日時(エポック秒)を取得
+	 *
+	 * @return 最終更新日時(エポック秒)
 	 */
-	public Long getUpdateAt() {
+	public Integer getUpdateAt() {
 		return updateAt;
 	}
-	
+
 	/**
-	 * 更新日時を設定
-	 * 
-	 * @param updateAt 更新日時
+	 * 最終更新日時(エポック秒)を設定
+	 *
+	 * @param updateAt 最終更新日時(エポック秒)
 	 */
-	public void setUpdateAt(Long updateAt) {
+	public void setUpdateAt(Integer updateAt) {
 		this.updateAt = updateAt;
 	}
+
 }

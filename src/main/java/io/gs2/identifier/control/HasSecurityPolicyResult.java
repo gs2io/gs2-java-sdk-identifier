@@ -25,28 +25,49 @@ import io.gs2.identifier.model.*;
  * @author Game Server Services, Inc.
  */
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class GetSecurityPolicyResult {
+public class HasSecurityPolicyResult {
+
+	/** 次のページを読み込むためのトークン */
+	private String nextPageToken;
 
 	/** セキュリティポリシー */
-	private SecurityPolicy item;
+	private List<SecurityPolicy> items;
 
+
+	/**
+	 * 次のページを読み込むためのトークンを取得
+	 *
+	 * @return 次のページを読み込むためのトークン
+	 */
+	public String getNextPageToken() {
+		return nextPageToken;
+	}
+
+	/**
+	 * 次のページを読み込むためのトークンを設定
+	 *
+	 * @param nextPageToken 次のページを読み込むためのトークン
+	 */
+	public void setNextPageToken(String nextPageToken) {
+		this.nextPageToken = nextPageToken;
+	}
 
 	/**
 	 * セキュリティポリシーを取得
 	 *
 	 * @return セキュリティポリシー
 	 */
-	public SecurityPolicy getItem() {
-		return item;
+	public List<SecurityPolicy> getItems() {
+		return items;
 	}
 
 	/**
 	 * セキュリティポリシーを設定
 	 *
-	 * @param item セキュリティポリシー
+	 * @param items セキュリティポリシー
 	 */
-	public void setItem(SecurityPolicy item) {
-		this.item = item;
+	public void setItems(List<SecurityPolicy> items) {
+		this.items = items;
 	}
 
 }

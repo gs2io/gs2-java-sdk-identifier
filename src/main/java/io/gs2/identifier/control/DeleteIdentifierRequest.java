@@ -1,13 +1,28 @@
+/*
+ * Copyright 2016 Game Server Services, Inc. or its affiliates. All Rights
+ * Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
 package io.gs2.identifier.control;
 
-import io.gs2.control.Gs2BasicRequest;
+import org.json.JSONObject;
+import java.util.List;
 import io.gs2.identifier.Gs2Identifier;
+import io.gs2.control.Gs2BasicRequest;
 
 /**
- * GSIの削除リクエスト。
- * 
  * @author Game Server Services, Inc.
- *
  */
 @SuppressWarnings("serial")
 public class DeleteIdentifierRequest extends Gs2BasicRequest<DeleteIdentifierRequest> {
@@ -16,66 +31,69 @@ public class DeleteIdentifierRequest extends Gs2BasicRequest<DeleteIdentifierReq
 		public static final String FUNCTION = "DeleteIdentifier";
 	}
 
-	/** ユーザ名 */
-	String userName;
-	/** GSI ID */
-	String identifierId;
+	/** ユーザの名前 */
+	private String userName;
+
+	/** GSIのGRN */
+	private String identifierId;
+
 
 	/**
-	 * ユーザ名を取得。
-	 * 
-	 * @return ユーザ名
+	 * ユーザの名前を取得
+	 *
+	 * @return ユーザの名前
 	 */
 	public String getUserName() {
 		return userName;
 	}
-	
+
 	/**
-	 * ユーザ名を設定。
-	 * 
-	 * @param userName ユーザ名
+	 * ユーザの名前を設定
+	 *
+	 * @param userName ユーザの名前
 	 */
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	
+
 	/**
-	 * ユーザ名を設定。
-	 * 
-	 * @param userName ユーザ名
+	 * ユーザの名前を設定
+	 *
+	 * @param userName ユーザの名前
 	 * @return this
 	 */
 	public DeleteIdentifierRequest withUserName(String userName) {
 		setUserName(userName);
 		return this;
 	}
-	
+
 	/**
-	 * GSI IDを取得。
-	 * 
-	 * @return GSI ID
+	 * GSIのGRNを取得
+	 *
+	 * @return GSIのGRN
 	 */
 	public String getIdentifierId() {
 		return identifierId;
 	}
-	
+
 	/**
-	 * GSI IDを設定。
-	 * 
-	 * @param identifierId GSI ID
+	 * GSIのGRNを設定
+	 *
+	 * @param identifierId GSIのGRN
 	 */
 	public void setIdentifierId(String identifierId) {
 		this.identifierId = identifierId;
 	}
-	
+
 	/**
-	 * GSI IDを設定。
-	 * 
-	 * @param identifierId GSI ID
+	 * GSIのGRNを設定
+	 *
+	 * @param identifierId GSIのGRN
 	 * @return this
 	 */
 	public DeleteIdentifierRequest withIdentifierId(String identifierId) {
 		setIdentifierId(identifierId);
 		return this;
 	}
+
 }

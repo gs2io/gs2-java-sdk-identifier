@@ -25,74 +25,74 @@ import io.gs2.control.Gs2BasicRequest;
  * @author Game Server Services, Inc.
  */
 @SuppressWarnings("serial")
-public class CreateSecurityPolicyRequest extends Gs2BasicRequest<CreateSecurityPolicyRequest> {
+public class GetIdentifierRequest extends Gs2BasicRequest<GetIdentifierRequest> {
 
 	public static class Constant extends Gs2Identifier.Constant {
-		public static final String FUNCTION = "CreateSecurityPolicy";
+		public static final String FUNCTION = "GetIdentifier";
 	}
 
-	/** ポリシードキュメント */
-	private String policy;
+	/** ユーザの名前 */
+	private String userName;
 
-	/** 名前 */
-	private String name;
+	/** GSIのGRN */
+	private String identifierId;
 
 
 	/**
-	 * ポリシードキュメントを取得
+	 * ユーザの名前を取得
 	 *
-	 * @return ポリシードキュメント
+	 * @return ユーザの名前
 	 */
-	public String getPolicy() {
-		return policy;
+	public String getUserName() {
+		return userName;
 	}
 
 	/**
-	 * ポリシードキュメントを設定
+	 * ユーザの名前を設定
 	 *
-	 * @param policy ポリシードキュメント
+	 * @param userName ユーザの名前
 	 */
-	public void setPolicy(String policy) {
-		this.policy = policy;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	/**
-	 * ポリシードキュメントを設定
+	 * ユーザの名前を設定
 	 *
-	 * @param policy ポリシードキュメント
+	 * @param userName ユーザの名前
 	 * @return this
 	 */
-	public CreateSecurityPolicyRequest withPolicy(String policy) {
-		setPolicy(policy);
+	public GetIdentifierRequest withUserName(String userName) {
+		setUserName(userName);
 		return this;
 	}
 
 	/**
-	 * 名前を取得
+	 * GSIのGRNを取得
 	 *
-	 * @return 名前
+	 * @return GSIのGRN
 	 */
-	public String getName() {
-		return name;
+	public String getIdentifierId() {
+		return identifierId;
 	}
 
 	/**
-	 * 名前を設定
+	 * GSIのGRNを設定
 	 *
-	 * @param name 名前
+	 * @param identifierId GSIのGRN
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setIdentifierId(String identifierId) {
+		this.identifierId = identifierId;
 	}
 
 	/**
-	 * 名前を設定
+	 * GSIのGRNを設定
 	 *
-	 * @param name 名前
+	 * @param identifierId GSIのGRN
 	 * @return this
 	 */
-	public CreateSecurityPolicyRequest withName(String name) {
-		setName(name);
+	public GetIdentifierRequest withIdentifierId(String identifierId) {
+		setIdentifierId(identifierId);
 		return this;
 	}
 

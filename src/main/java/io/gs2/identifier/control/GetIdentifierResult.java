@@ -25,27 +25,27 @@ import io.gs2.identifier.model.*;
  * @author Game Server Services, Inc.
  */
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class GetSecurityPolicyResult {
+public class GetIdentifierResult {
 
-	/** セキュリティポリシー */
-	private SecurityPolicy item;
+	/** ユーザ */
+	private Identifier item;
 
 
 	/**
-	 * セキュリティポリシーを取得
+	 * ユーザを取得
 	 *
-	 * @return セキュリティポリシー
+	 * @return ユーザ
 	 */
-	public SecurityPolicy getItem() {
+	public Identifier getItem() {
 		return item;
 	}
 
 	/**
-	 * セキュリティポリシーを設定
+	 * ユーザを設定
 	 *
-	 * @param item セキュリティポリシー
+	 * @param item ユーザ
 	 */
-	public void setItem(SecurityPolicy item) {
+	public void setItem(Identifier item) {
 		this.item = item;
 	}
 

@@ -28,37 +28,43 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @SuppressWarnings("serial")
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class User implements Serializable {
+public class FullIdentifier implements Serializable {
 
-	/** オーナーID */
-	private String ownerId;
+	/** クライアントシークレット */
+	private String clientSecret;
 
 	/** 作成日時(エポック秒) */
 	private Integer createAt;
 
 	/** ユーザGRN */
+	private String identifierId;
+
+	/** オーナーID */
+	private String ownerId;
+
+	/** ユーザID */
 	private String userId;
 
-	/** ユーザ名 */
-	private String name;
+	/** クライアントID */
+	private String clientId;
 
 
 	/**
-	 * オーナーIDを取得
+	 * クライアントシークレットを取得
 	 *
-	 * @return オーナーID
+	 * @return クライアントシークレット
 	 */
-	public String getOwnerId() {
-		return ownerId;
+	public String getClientSecret() {
+		return clientSecret;
 	}
 
 	/**
-	 * オーナーIDを設定
+	 * クライアントシークレットを設定
 	 *
-	 * @param ownerId オーナーID
+	 * @param clientSecret クライアントシークレット
 	 */
-	public void setOwnerId(String ownerId) {
-		this.ownerId = ownerId;
+	public void setClientSecret(String clientSecret) {
+		this.clientSecret = clientSecret;
 	}
 
 	/**
@@ -84,35 +90,71 @@ public class User implements Serializable {
 	 *
 	 * @return ユーザGRN
 	 */
-	public String getUserId() {
-		return userId;
+	public String getIdentifierId() {
+		return identifierId;
 	}
 
 	/**
 	 * ユーザGRNを設定
 	 *
-	 * @param userId ユーザGRN
+	 * @param identifierId ユーザGRN
+	 */
+	public void setIdentifierId(String identifierId) {
+		this.identifierId = identifierId;
+	}
+
+	/**
+	 * オーナーIDを取得
+	 *
+	 * @return オーナーID
+	 */
+	public String getOwnerId() {
+		return ownerId;
+	}
+
+	/**
+	 * オーナーIDを設定
+	 *
+	 * @param ownerId オーナーID
+	 */
+	public void setOwnerId(String ownerId) {
+		this.ownerId = ownerId;
+	}
+
+	/**
+	 * ユーザIDを取得
+	 *
+	 * @return ユーザID
+	 */
+	public String getUserId() {
+		return userId;
+	}
+
+	/**
+	 * ユーザIDを設定
+	 *
+	 * @param userId ユーザID
 	 */
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
 	/**
-	 * ユーザ名を取得
+	 * クライアントIDを取得
 	 *
-	 * @return ユーザ名
+	 * @return クライアントID
 	 */
-	public String getName() {
-		return name;
+	public String getClientId() {
+		return clientId;
 	}
 
 	/**
-	 * ユーザ名を設定
+	 * クライアントIDを設定
 	 *
-	 * @param name ユーザ名
+	 * @param clientId クライアントID
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setClientId(String clientId) {
+		this.clientId = clientId;
 	}
 
 }

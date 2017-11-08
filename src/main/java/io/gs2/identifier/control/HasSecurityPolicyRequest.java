@@ -25,14 +25,14 @@ import io.gs2.control.Gs2BasicRequest;
  * @author Game Server Services, Inc.
  */
 @SuppressWarnings("serial")
-public class CreateUserRequest extends Gs2BasicRequest<CreateUserRequest> {
+public class HasSecurityPolicyRequest extends Gs2BasicRequest<HasSecurityPolicyRequest> {
 
 	public static class Constant extends Gs2Identifier.Constant {
-		public static final String FUNCTION = "CreateUser";
+		public static final String FUNCTION = "HasSecurityPolicy";
 	}
 
 	/** ユーザの名前 */
-	private String name;
+	private String userName;
 
 
 	/**
@@ -40,27 +40,27 @@ public class CreateUserRequest extends Gs2BasicRequest<CreateUserRequest> {
 	 *
 	 * @return ユーザの名前
 	 */
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
 
 	/**
 	 * ユーザの名前を設定
 	 *
-	 * @param name ユーザの名前
+	 * @param userName ユーザの名前
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	/**
 	 * ユーザの名前を設定
 	 *
-	 * @param name ユーザの名前
+	 * @param userName ユーザの名前
 	 * @return this
 	 */
-	public CreateUserRequest withName(String name) {
-		setName(name);
+	public HasSecurityPolicyRequest withUserName(String userName) {
+		setUserName(userName);
 		return this;
 	}
 
