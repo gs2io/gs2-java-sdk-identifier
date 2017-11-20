@@ -25,7 +25,7 @@ import io.gs2.control.Gs2BasicRequest;
  * @author Game Server Services, Inc.
  */
 @SuppressWarnings("serial")
-public class HasSecurityPolicyRequest extends Gs2BasicRequest<HasSecurityPolicyRequest> {
+public class GetHasSecurityPolicyRequest extends Gs2BasicRequest<GetHasSecurityPolicyRequest> {
 
 	public static class Constant extends Gs2Identifier.Constant {
 		public static final String FUNCTION = "HasSecurityPolicy";
@@ -59,7 +59,7 @@ public class HasSecurityPolicyRequest extends Gs2BasicRequest<HasSecurityPolicyR
 	 * @param userName ユーザの名前
 	 * @return this
 	 */
-	public HasSecurityPolicyRequest withUserName(String userName) {
+	public GetHasSecurityPolicyRequest withUserName(String userName) {
 		setUserName(userName);
 		return this;
 	}

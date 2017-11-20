@@ -61,7 +61,7 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
-	 * @return 結果
+
 	 */
 
 	public void attachSecurityPolicy(AttachSecurityPolicyRequest request) {
@@ -88,7 +88,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public CreateIdentifierResult createIdentifier(CreateIdentifierRequest request) {
@@ -114,7 +116,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public CreateSecurityPolicyResult createSecurityPolicy(CreateSecurityPolicyRequest request) {
@@ -142,7 +146,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public CreateUserResult createUser(CreateUserRequest request) {
@@ -169,6 +175,7 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 */
 
 	public void deleteIdentifier(DeleteIdentifierRequest request) {
@@ -195,6 +202,7 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 */
 
 	public void deleteSecurityPolicy(DeleteSecurityPolicyRequest request) {
@@ -221,6 +229,7 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 */
 
 	public void deleteUser(DeleteUserRequest request) {
@@ -247,7 +256,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public DescribeCommonSecurityPolicyResult describeCommonSecurityPolicy(DescribeCommonSecurityPolicyRequest request) {
@@ -280,7 +291,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public DescribeIdentifierResult describeIdentifier(DescribeIdentifierRequest request) {
@@ -313,7 +326,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public DescribeSecurityPolicyResult describeSecurityPolicy(DescribeSecurityPolicyRequest request) {
@@ -346,7 +361,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public DescribeUserResult describeUser(DescribeUserRequest request) {
@@ -379,6 +396,7 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 */
 
 	public void detachSecurityPolicy(DetachSecurityPolicyRequest request) {
@@ -401,11 +419,42 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 
 
 	/**
+	 * ユーザが保持しているセキュリティポリシー一覧を取得します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 * @return 結果
+
+	 */
+
+	public GetHasSecurityPolicyResult getHasSecurityPolicy(GetHasSecurityPolicyRequest request) {
+
+	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null ? "null" : request.getUserName()) + "/securityPolicy";
+
+
+
+		HttpGet get = createHttpGet(
+				url,
+				credential,
+				ENDPOINT,
+				GetHasSecurityPolicyRequest.Constant.MODULE,
+				GetHasSecurityPolicyRequest.Constant.FUNCTION);
+
+
+		return doRequest(get, GetHasSecurityPolicyResult.class);
+
+	}
+
+
+	/**
 	 * GSIを取得します。<br>
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public GetIdentifierResult getIdentifier(GetIdentifierRequest request) {
@@ -432,7 +481,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public GetSecurityPolicyResult getSecurityPolicy(GetSecurityPolicyRequest request) {
@@ -459,7 +510,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public GetUserResult getUser(GetUserRequest request) {
@@ -482,38 +535,13 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 
 
 	/**
-	 * ユーザが保持しているセキュリティポリシー一覧を取得します<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-	 * @return 結果
-	 */
-
-	public HasSecurityPolicyResult hasSecurityPolicy(HasSecurityPolicyRequest request) {
-
-	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null ? "null" : request.getUserName()) + "/securityPolicy";
-
-
-
-		HttpGet get = createHttpGet(
-				url,
-				credential,
-				ENDPOINT,
-				HasSecurityPolicyRequest.Constant.MODULE,
-				HasSecurityPolicyRequest.Constant.FUNCTION);
-
-
-		return doRequest(get, HasSecurityPolicyResult.class);
-
-	}
-
-
-	/**
 	 * セキュリティポリシーを更新します<br>
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public UpdateSecurityPolicyResult updateSecurityPolicy(UpdateSecurityPolicyRequest request) {

@@ -25,7 +25,7 @@ import io.gs2.identifier.model.*;
  * @author Game Server Services, Inc.
  */
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class HasSecurityPolicyResult {
+public class GetHasSecurityPolicyResult {
 
 	/** 次のページを読み込むためのトークン */
 	private String nextPageToken;
