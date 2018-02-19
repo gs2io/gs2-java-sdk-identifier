@@ -70,12 +70,15 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 				.put("securityPolicyId", request.getSecurityPolicyId());
 
 		HttpPut put = createHttpPut(
-				Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null ? "null" : request.getUserName()) + "/securityPolicy",
+				Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null || request.getUserName().equals("") ? "null" : request.getUserName()) + "/securityPolicy",
 				credential,
 				ENDPOINT,
 				AttachSecurityPolicyRequest.Constant.MODULE,
 				AttachSecurityPolicyRequest.Constant.FUNCTION,
 				body.toString());
+        if(request.getRequestId() != null) {
+            put.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		doRequest(put, null);
@@ -98,12 +101,15 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 		ObjectNode body = JsonNodeFactory.instance.objectNode();
 
 		HttpPost post = createHttpPost(
-				Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null ? "null" : request.getUserName()) + "/identifier",
+				Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null || request.getUserName().equals("") ? "null" : request.getUserName()) + "/identifier",
 				credential,
 				ENDPOINT,
 				CreateIdentifierRequest.Constant.MODULE,
 				CreateIdentifierRequest.Constant.FUNCTION,
 				body.toString());
+        if(request.getRequestId() != null) {
+            post.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(post, CreateIdentifierResult.class);
@@ -124,8 +130,8 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 	public CreateSecurityPolicyResult createSecurityPolicy(CreateSecurityPolicyRequest request) {
 
 		ObjectNode body = JsonNodeFactory.instance.objectNode()
-				.put("policy", request.getPolicy())
-				.put("name", request.getName());
+				.put("name", request.getName())
+				.put("policy", request.getPolicy());
 
 		HttpPost post = createHttpPost(
 				Gs2Constant.ENDPOINT_HOST + "/securityPolicy",
@@ -134,6 +140,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 				CreateSecurityPolicyRequest.Constant.MODULE,
 				CreateSecurityPolicyRequest.Constant.FUNCTION,
 				body.toString());
+        if(request.getRequestId() != null) {
+            post.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(post, CreateSecurityPolicyResult.class);
@@ -163,6 +172,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 				CreateUserRequest.Constant.MODULE,
 				CreateUserRequest.Constant.FUNCTION,
 				body.toString());
+        if(request.getRequestId() != null) {
+            post.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(post, CreateUserResult.class);
@@ -180,7 +192,7 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 
 	public void deleteIdentifier(DeleteIdentifierRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null ? "null" : request.getUserName()) + "/identifier/" + (request.getIdentifierId() == null ? "null" : request.getIdentifierId()) + "";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null || request.getUserName().equals("") ? "null" : request.getUserName()) + "/identifier/" + (request.getIdentifierId() == null || request.getIdentifierId().equals("") ? "null" : request.getIdentifierId()) + "";
 
 
 
@@ -190,6 +202,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 				ENDPOINT,
 				DeleteIdentifierRequest.Constant.MODULE,
 				DeleteIdentifierRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		doRequest(delete, null);
@@ -207,7 +222,7 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 
 	public void deleteSecurityPolicy(DeleteSecurityPolicyRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/securityPolicy/" + (request.getSecurityPolicyName() == null ? "null" : request.getSecurityPolicyName()) + "";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/securityPolicy/" + (request.getSecurityPolicyName() == null || request.getSecurityPolicyName().equals("") ? "null" : request.getSecurityPolicyName()) + "";
 
 
 
@@ -217,6 +232,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 				ENDPOINT,
 				DeleteSecurityPolicyRequest.Constant.MODULE,
 				DeleteSecurityPolicyRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		doRequest(delete, null);
@@ -234,7 +252,7 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 
 	public void deleteUser(DeleteUserRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null ? "null" : request.getUserName()) + "";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null || request.getUserName().equals("") ? "null" : request.getUserName()) + "";
 
 
 
@@ -244,6 +262,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 				ENDPOINT,
 				DeleteUserRequest.Constant.MODULE,
 				DeleteUserRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		doRequest(delete, null);
@@ -279,6 +300,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 				ENDPOINT,
 				DescribeCommonSecurityPolicyRequest.Constant.MODULE,
 				DescribeCommonSecurityPolicyRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(get, DescribeCommonSecurityPolicyResult.class);
@@ -298,7 +322,7 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 
 	public DescribeIdentifierResult describeIdentifier(DescribeIdentifierRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null ? "null" : request.getUserName()) + "/identifier";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null || request.getUserName().equals("") ? "null" : request.getUserName()) + "/identifier";
 
         List<NameValuePair> queryString = new ArrayList<>();
         if(request.getPageToken() != null) queryString.add(new BasicNameValuePair("pageToken", String.valueOf(request.getPageToken())));
@@ -314,6 +338,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 				ENDPOINT,
 				DescribeIdentifierRequest.Constant.MODULE,
 				DescribeIdentifierRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(get, DescribeIdentifierResult.class);
@@ -349,6 +376,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 				ENDPOINT,
 				DescribeSecurityPolicyRequest.Constant.MODULE,
 				DescribeSecurityPolicyRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(get, DescribeSecurityPolicyResult.class);
@@ -384,6 +414,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 				ENDPOINT,
 				DescribeUserRequest.Constant.MODULE,
 				DescribeUserRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(get, DescribeUserResult.class);
@@ -401,7 +434,7 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 
 	public void detachSecurityPolicy(DetachSecurityPolicyRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null ? "null" : request.getUserName()) + "/securityPolicy/" + (request.getSecurityPolicyId() == null ? "null" : request.getSecurityPolicyId()) + "";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null || request.getUserName().equals("") ? "null" : request.getUserName()) + "/securityPolicy/" + (request.getSecurityPolicyId() == null || request.getSecurityPolicyId().equals("") ? "null" : request.getSecurityPolicyId()) + "";
 
 
 
@@ -411,6 +444,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 				ENDPOINT,
 				DetachSecurityPolicyRequest.Constant.MODULE,
 				DetachSecurityPolicyRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		doRequest(delete, null);
@@ -430,7 +466,7 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 
 	public GetHasSecurityPolicyResult getHasSecurityPolicy(GetHasSecurityPolicyRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null ? "null" : request.getUserName()) + "/securityPolicy";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null || request.getUserName().equals("") ? "null" : request.getUserName()) + "/securityPolicy";
 
 
 
@@ -440,6 +476,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 				ENDPOINT,
 				GetHasSecurityPolicyRequest.Constant.MODULE,
 				GetHasSecurityPolicyRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(get, GetHasSecurityPolicyResult.class);
@@ -459,7 +498,7 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 
 	public GetIdentifierResult getIdentifier(GetIdentifierRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null ? "null" : request.getUserName()) + "/identifier/" + (request.getIdentifierId() == null ? "null" : request.getIdentifierId()) + "";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null || request.getUserName().equals("") ? "null" : request.getUserName()) + "/identifier/" + (request.getIdentifierId() == null || request.getIdentifierId().equals("") ? "null" : request.getIdentifierId()) + "";
 
 
 
@@ -469,6 +508,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 				ENDPOINT,
 				GetIdentifierRequest.Constant.MODULE,
 				GetIdentifierRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(get, GetIdentifierResult.class);
@@ -488,7 +530,7 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 
 	public GetSecurityPolicyResult getSecurityPolicy(GetSecurityPolicyRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/securityPolicy/" + (request.getSecurityPolicyName() == null ? "null" : request.getSecurityPolicyName()) + "";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/securityPolicy/" + (request.getSecurityPolicyName() == null || request.getSecurityPolicyName().equals("") ? "null" : request.getSecurityPolicyName()) + "";
 
 
 
@@ -498,6 +540,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 				ENDPOINT,
 				GetSecurityPolicyRequest.Constant.MODULE,
 				GetSecurityPolicyRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(get, GetSecurityPolicyResult.class);
@@ -517,7 +562,7 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 
 	public GetUserResult getUser(GetUserRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null ? "null" : request.getUserName()) + "";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null || request.getUserName().equals("") ? "null" : request.getUserName()) + "";
 
 
 
@@ -527,6 +572,9 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 				ENDPOINT,
 				GetUserRequest.Constant.MODULE,
 				GetUserRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(get, GetUserResult.class);
@@ -550,12 +598,15 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 				.put("policy", request.getPolicy());
 
 		HttpPut put = createHttpPut(
-				Gs2Constant.ENDPOINT_HOST + "/securityPolicy/" + (request.getSecurityPolicyName() == null ? "null" : request.getSecurityPolicyName()) + "",
+				Gs2Constant.ENDPOINT_HOST + "/securityPolicy/" + (request.getSecurityPolicyName() == null || request.getSecurityPolicyName().equals("") ? "null" : request.getSecurityPolicyName()) + "",
 				credential,
 				ENDPOINT,
 				UpdateSecurityPolicyRequest.Constant.MODULE,
 				UpdateSecurityPolicyRequest.Constant.FUNCTION,
 				body.toString());
+        if(request.getRequestId() != null) {
+            put.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(put, UpdateSecurityPolicyResult.class);
