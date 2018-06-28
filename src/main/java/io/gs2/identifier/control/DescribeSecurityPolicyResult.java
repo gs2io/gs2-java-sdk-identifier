@@ -27,30 +27,12 @@ import io.gs2.identifier.model.*;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class DescribeSecurityPolicyResult {
 
-	/** 次のページを読み込むためのトークン */
-	private String nextPageToken;
-
 	/** セキュリティポリシー */
 	private List<SecurityPolicy> items;
 
+	/** 次のページを読み込むためのトークン */
+	private String nextPageToken;
 
-	/**
-	 * 次のページを読み込むためのトークンを取得
-	 *
-	 * @return 次のページを読み込むためのトークン
-	 */
-	public String getNextPageToken() {
-		return nextPageToken;
-	}
-
-	/**
-	 * 次のページを読み込むためのトークンを設定
-	 *
-	 * @param nextPageToken 次のページを読み込むためのトークン
-	 */
-	public void setNextPageToken(String nextPageToken) {
-		this.nextPageToken = nextPageToken;
-	}
 
 	/**
 	 * セキュリティポリシーを取得
@@ -68,6 +50,24 @@ public class DescribeSecurityPolicyResult {
 	 */
 	public void setItems(List<SecurityPolicy> items) {
 		this.items = items;
+	}
+
+	/**
+	 * 次のページを読み込むためのトークンを取得
+	 *
+	 * @return 次のページを読み込むためのトークン
+	 */
+	public String getNextPageToken() {
+		return nextPageToken;
+	}
+
+	/**
+	 * 次のページを読み込むためのトークンを設定
+	 *
+	 * @param nextPageToken 次のページを読み込むためのトークン
+	 */
+	public void setNextPageToken(String nextPageToken) {
+		this.nextPageToken = nextPageToken;
 	}
 
 }

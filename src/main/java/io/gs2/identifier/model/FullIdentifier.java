@@ -30,12 +30,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class FullIdentifier implements Serializable {
 
-	/** クライアントシークレット */
-	private String clientSecret;
-
-	/** 作成日時(エポック秒) */
-	private Integer createAt;
-
 	/** ユーザGRN */
 	private String identifierId;
 
@@ -48,42 +42,12 @@ public class FullIdentifier implements Serializable {
 	/** クライアントID */
 	private String clientId;
 
+	/** クライアントシークレット */
+	private String clientSecret;
 
-	/**
-	 * クライアントシークレットを取得
-	 *
-	 * @return クライアントシークレット
-	 */
-	public String getClientSecret() {
-		return clientSecret;
-	}
+	/** 作成日時(エポック秒) */
+	private Integer createAt;
 
-	/**
-	 * クライアントシークレットを設定
-	 *
-	 * @param clientSecret クライアントシークレット
-	 */
-	public void setClientSecret(String clientSecret) {
-		this.clientSecret = clientSecret;
-	}
-
-	/**
-	 * 作成日時(エポック秒)を取得
-	 *
-	 * @return 作成日時(エポック秒)
-	 */
-	public Integer getCreateAt() {
-		return createAt;
-	}
-
-	/**
-	 * 作成日時(エポック秒)を設定
-	 *
-	 * @param createAt 作成日時(エポック秒)
-	 */
-	public void setCreateAt(Integer createAt) {
-		this.createAt = createAt;
-	}
 
 	/**
 	 * ユーザGRNを取得
@@ -155,6 +119,42 @@ public class FullIdentifier implements Serializable {
 	 */
 	public void setClientId(String clientId) {
 		this.clientId = clientId;
+	}
+
+	/**
+	 * クライアントシークレットを取得
+	 *
+	 * @return クライアントシークレット
+	 */
+	public String getClientSecret() {
+		return clientSecret;
+	}
+
+	/**
+	 * クライアントシークレットを設定
+	 *
+	 * @param clientSecret クライアントシークレット
+	 */
+	public void setClientSecret(String clientSecret) {
+		this.clientSecret = clientSecret;
+	}
+
+	/**
+	 * 作成日時(エポック秒)を取得
+	 *
+	 * @return 作成日時(エポック秒)
+	 */
+	public Integer getCreateAt() {
+		return createAt;
+	}
+
+	/**
+	 * 作成日時(エポック秒)を設定
+	 *
+	 * @param createAt 作成日時(エポック秒)
+	 */
+	public void setCreateAt(Integer createAt) {
+		this.createAt = createAt;
 	}
 
 }

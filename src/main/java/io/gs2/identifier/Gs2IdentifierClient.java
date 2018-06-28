@@ -18,7 +18,9 @@ package io.gs2.identifier;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import io.gs2.model.Region;
 import io.gs2.util.EncodingUtil;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.HttpDelete;
@@ -55,34 +57,24 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 		super(credential);
 	}
 
+	/**
+	 * コンストラクタ。
+	 *
+	 * @param credential 認証情報
+	 * @param region リージョン
+	 */
+	public Gs2IdentifierClient(IGs2Credential credential, Region region) {
+		super(credential, region);
+	}
 
 	/**
-	 * ユーザにセキュリティポリシーを割り当てます<br>
-	 * <br>
+	 * コンストラクタ。
 	 *
-	 * @param request リクエストパラメータ
-
+	 * @param credential 認証情報
+	 * @param region リージョン
 	 */
-
-	public void attachSecurityPolicy(AttachSecurityPolicyRequest request) {
-
-		ObjectNode body = JsonNodeFactory.instance.objectNode()
-				.put("securityPolicyId", request.getSecurityPolicyId());
-
-		HttpPut put = createHttpPut(
-				Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null || request.getUserName().equals("") ? "null" : request.getUserName()) + "/securityPolicy",
-				credential,
-				ENDPOINT,
-				AttachSecurityPolicyRequest.Constant.MODULE,
-				AttachSecurityPolicyRequest.Constant.FUNCTION,
-				body.toString());
-        if(request.getRequestId() != null) {
-            put.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
-        }
-
-
-		doRequest(put, null);
-
+	public Gs2IdentifierClient(IGs2Credential credential, String region) {
+		super(credential, region);
 	}
 
 
@@ -113,6 +105,106 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 
 
 		return doRequest(post, CreateIdentifierResult.class);
+
+	}
+
+
+	/**
+	 * GSIを削除します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 */
+
+	public void deleteIdentifier(DeleteIdentifierRequest request) {
+
+	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null || request.getUserName().equals("") ? "null" : request.getUserName()) + "/identifier/" + (request.getIdentifierId() == null || request.getIdentifierId().equals("") ? "null" : request.getIdentifierId()) + "";
+
+
+
+		HttpDelete delete = createHttpDelete(
+				url,
+				credential,
+				ENDPOINT,
+				DeleteIdentifierRequest.Constant.MODULE,
+				DeleteIdentifierRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+
+		doRequest(delete, null);
+
+	}
+
+
+	/**
+	 * GSIの一覧を取得します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 * @return 結果
+
+	 */
+
+	public DescribeIdentifierResult describeIdentifier(DescribeIdentifierRequest request) {
+
+	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null || request.getUserName().equals("") ? "null" : request.getUserName()) + "/identifier";
+
+        List<NameValuePair> queryString = new ArrayList<>();
+        if(request.getPageToken() != null) queryString.add(new BasicNameValuePair("pageToken", String.valueOf(request.getPageToken())));
+        if(request.getLimit() != null) queryString.add(new BasicNameValuePair("limit", String.valueOf(request.getLimit())));
+
+
+		if(queryString.size() > 0) {
+			url += "?" + URLEncodedUtils.format(queryString, "UTF-8");
+		}
+		HttpGet get = createHttpGet(
+				url,
+				credential,
+				ENDPOINT,
+				DescribeIdentifierRequest.Constant.MODULE,
+				DescribeIdentifierRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+
+		return doRequest(get, DescribeIdentifierResult.class);
+
+	}
+
+
+	/**
+	 * GSIを取得します。<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 * @return 結果
+
+	 */
+
+	public GetIdentifierResult getIdentifier(GetIdentifierRequest request) {
+
+	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null || request.getUserName().equals("") ? "null" : request.getUserName()) + "/identifier/" + (request.getIdentifierId() == null || request.getIdentifierId().equals("") ? "null" : request.getIdentifierId()) + "";
+
+
+
+		HttpGet get = createHttpGet(
+				url,
+				credential,
+				ENDPOINT,
+				GetIdentifierRequest.Constant.MODULE,
+				GetIdentifierRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+
+		return doRequest(get, GetIdentifierResult.class);
 
 	}
 
@@ -151,68 +243,6 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 
 
 	/**
-	 * ユーザを新規作成します<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-
-	 * @return 結果
-
-	 */
-
-	public CreateUserResult createUser(CreateUserRequest request) {
-
-		ObjectNode body = JsonNodeFactory.instance.objectNode()
-				.put("name", request.getName());
-
-		HttpPost post = createHttpPost(
-				Gs2Constant.ENDPOINT_HOST + "/user",
-				credential,
-				ENDPOINT,
-				CreateUserRequest.Constant.MODULE,
-				CreateUserRequest.Constant.FUNCTION,
-				body.toString());
-        if(request.getRequestId() != null) {
-            post.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
-        }
-
-
-		return doRequest(post, CreateUserResult.class);
-
-	}
-
-
-	/**
-	 * GSIを削除します<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-
-	 */
-
-	public void deleteIdentifier(DeleteIdentifierRequest request) {
-
-	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null || request.getUserName().equals("") ? "null" : request.getUserName()) + "/identifier/" + (request.getIdentifierId() == null || request.getIdentifierId().equals("") ? "null" : request.getIdentifierId()) + "";
-
-
-
-		HttpDelete delete = createHttpDelete(
-				url,
-				credential,
-				ENDPOINT,
-				DeleteIdentifierRequest.Constant.MODULE,
-				DeleteIdentifierRequest.Constant.FUNCTION);
-        if(request.getRequestId() != null) {
-            delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
-        }
-
-
-		doRequest(delete, null);
-
-	}
-
-
-	/**
 	 * セキュリティポリシーを削除します<br>
 	 * <br>
 	 *
@@ -232,36 +262,6 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 				ENDPOINT,
 				DeleteSecurityPolicyRequest.Constant.MODULE,
 				DeleteSecurityPolicyRequest.Constant.FUNCTION);
-        if(request.getRequestId() != null) {
-            delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
-        }
-
-
-		doRequest(delete, null);
-
-	}
-
-
-	/**
-	 * ユーザを削除します<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-
-	 */
-
-	public void deleteUser(DeleteUserRequest request) {
-
-	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null || request.getUserName().equals("") ? "null" : request.getUserName()) + "";
-
-
-
-		HttpDelete delete = createHttpDelete(
-				url,
-				credential,
-				ENDPOINT,
-				DeleteUserRequest.Constant.MODULE,
-				DeleteUserRequest.Constant.FUNCTION);
         if(request.getRequestId() != null) {
             delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
         }
@@ -311,44 +311,6 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 
 
 	/**
-	 * GSIの一覧を取得します<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-
-	 * @return 結果
-
-	 */
-
-	public DescribeIdentifierResult describeIdentifier(DescribeIdentifierRequest request) {
-
-	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null || request.getUserName().equals("") ? "null" : request.getUserName()) + "/identifier";
-
-        List<NameValuePair> queryString = new ArrayList<>();
-        if(request.getPageToken() != null) queryString.add(new BasicNameValuePair("pageToken", String.valueOf(request.getPageToken())));
-        if(request.getLimit() != null) queryString.add(new BasicNameValuePair("limit", String.valueOf(request.getLimit())));
-
-
-		if(queryString.size() > 0) {
-			url += "?" + URLEncodedUtils.format(queryString, "UTF-8");
-		}
-		HttpGet get = createHttpGet(
-				url,
-				credential,
-				ENDPOINT,
-				DescribeIdentifierRequest.Constant.MODULE,
-				DescribeIdentifierRequest.Constant.FUNCTION);
-        if(request.getRequestId() != null) {
-            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
-        }
-
-
-		return doRequest(get, DescribeIdentifierResult.class);
-
-	}
-
-
-	/**
 	 * セキュリティポリシーの一覧を取得します<br>
 	 * <br>
 	 *
@@ -382,6 +344,160 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 
 
 		return doRequest(get, DescribeSecurityPolicyResult.class);
+
+	}
+
+
+	/**
+	 * セキュリティポリシーを取得します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 * @return 結果
+
+	 */
+
+	public GetSecurityPolicyResult getSecurityPolicy(GetSecurityPolicyRequest request) {
+
+	    String url = Gs2Constant.ENDPOINT_HOST + "/securityPolicy/" + (request.getSecurityPolicyName() == null || request.getSecurityPolicyName().equals("") ? "null" : request.getSecurityPolicyName()) + "";
+
+
+
+		HttpGet get = createHttpGet(
+				url,
+				credential,
+				ENDPOINT,
+				GetSecurityPolicyRequest.Constant.MODULE,
+				GetSecurityPolicyRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+
+		return doRequest(get, GetSecurityPolicyResult.class);
+
+	}
+
+
+	/**
+	 * セキュリティポリシーを更新します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 * @return 結果
+
+	 */
+
+	public UpdateSecurityPolicyResult updateSecurityPolicy(UpdateSecurityPolicyRequest request) {
+
+		ObjectNode body = JsonNodeFactory.instance.objectNode()
+				.put("policy", request.getPolicy());
+		HttpPut put = createHttpPut(
+				Gs2Constant.ENDPOINT_HOST + "/securityPolicy/" + (request.getSecurityPolicyName() == null || request.getSecurityPolicyName().equals("") ? "null" : request.getSecurityPolicyName()) + "",
+				credential,
+				ENDPOINT,
+				UpdateSecurityPolicyRequest.Constant.MODULE,
+				UpdateSecurityPolicyRequest.Constant.FUNCTION,
+				body.toString());
+        if(request.getRequestId() != null) {
+            put.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+
+		return doRequest(put, UpdateSecurityPolicyResult.class);
+
+	}
+
+
+	/**
+	 * ユーザにセキュリティポリシーを割り当てます<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 */
+
+	public void attachSecurityPolicy(AttachSecurityPolicyRequest request) {
+
+		ObjectNode body = JsonNodeFactory.instance.objectNode()
+				.put("securityPolicyId", request.getSecurityPolicyId());
+		HttpPut put = createHttpPut(
+				Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null || request.getUserName().equals("") ? "null" : request.getUserName()) + "/securityPolicy",
+				credential,
+				ENDPOINT,
+				AttachSecurityPolicyRequest.Constant.MODULE,
+				AttachSecurityPolicyRequest.Constant.FUNCTION,
+				body.toString());
+        if(request.getRequestId() != null) {
+            put.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+
+		doRequest(put, null);
+
+	}
+
+
+	/**
+	 * ユーザを新規作成します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 * @return 結果
+
+	 */
+
+	public CreateUserResult createUser(CreateUserRequest request) {
+
+		ObjectNode body = JsonNodeFactory.instance.objectNode()
+				.put("name", request.getName());
+
+		HttpPost post = createHttpPost(
+				Gs2Constant.ENDPOINT_HOST + "/user",
+				credential,
+				ENDPOINT,
+				CreateUserRequest.Constant.MODULE,
+				CreateUserRequest.Constant.FUNCTION,
+				body.toString());
+        if(request.getRequestId() != null) {
+            post.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+
+		return doRequest(post, CreateUserResult.class);
+
+	}
+
+
+	/**
+	 * ユーザを削除します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 */
+
+	public void deleteUser(DeleteUserRequest request) {
+
+	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null || request.getUserName().equals("") ? "null" : request.getUserName()) + "";
+
+
+
+		HttpDelete delete = createHttpDelete(
+				url,
+				credential,
+				ENDPOINT,
+				DeleteUserRequest.Constant.MODULE,
+				DeleteUserRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+
+		doRequest(delete, null);
 
 	}
 
@@ -487,70 +603,6 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 
 
 	/**
-	 * GSIを取得します。<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-
-	 * @return 結果
-
-	 */
-
-	public GetIdentifierResult getIdentifier(GetIdentifierRequest request) {
-
-	    String url = Gs2Constant.ENDPOINT_HOST + "/user/" + (request.getUserName() == null || request.getUserName().equals("") ? "null" : request.getUserName()) + "/identifier/" + (request.getIdentifierId() == null || request.getIdentifierId().equals("") ? "null" : request.getIdentifierId()) + "";
-
-
-
-		HttpGet get = createHttpGet(
-				url,
-				credential,
-				ENDPOINT,
-				GetIdentifierRequest.Constant.MODULE,
-				GetIdentifierRequest.Constant.FUNCTION);
-        if(request.getRequestId() != null) {
-            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
-        }
-
-
-		return doRequest(get, GetIdentifierResult.class);
-
-	}
-
-
-	/**
-	 * セキュリティポリシーを取得します<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-
-	 * @return 結果
-
-	 */
-
-	public GetSecurityPolicyResult getSecurityPolicy(GetSecurityPolicyRequest request) {
-
-	    String url = Gs2Constant.ENDPOINT_HOST + "/securityPolicy/" + (request.getSecurityPolicyName() == null || request.getSecurityPolicyName().equals("") ? "null" : request.getSecurityPolicyName()) + "";
-
-
-
-		HttpGet get = createHttpGet(
-				url,
-				credential,
-				ENDPOINT,
-				GetSecurityPolicyRequest.Constant.MODULE,
-				GetSecurityPolicyRequest.Constant.FUNCTION);
-        if(request.getRequestId() != null) {
-            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
-        }
-
-
-		return doRequest(get, GetSecurityPolicyResult.class);
-
-	}
-
-
-	/**
 	 * ユーザを取得します。<br>
 	 * <br>
 	 *
@@ -578,38 +630,6 @@ public class Gs2IdentifierClient extends AbstractGs2Client<Gs2IdentifierClient> 
 
 
 		return doRequest(get, GetUserResult.class);
-
-	}
-
-
-	/**
-	 * セキュリティポリシーを更新します<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-
-	 * @return 結果
-
-	 */
-
-	public UpdateSecurityPolicyResult updateSecurityPolicy(UpdateSecurityPolicyRequest request) {
-
-		ObjectNode body = JsonNodeFactory.instance.objectNode()
-				.put("policy", request.getPolicy());
-
-		HttpPut put = createHttpPut(
-				Gs2Constant.ENDPOINT_HOST + "/securityPolicy/" + (request.getSecurityPolicyName() == null || request.getSecurityPolicyName().equals("") ? "null" : request.getSecurityPolicyName()) + "",
-				credential,
-				ENDPOINT,
-				UpdateSecurityPolicyRequest.Constant.MODULE,
-				UpdateSecurityPolicyRequest.Constant.FUNCTION,
-				body.toString());
-        if(request.getRequestId() != null) {
-            put.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
-        }
-
-
-		return doRequest(put, UpdateSecurityPolicyResult.class);
 
 	}
 

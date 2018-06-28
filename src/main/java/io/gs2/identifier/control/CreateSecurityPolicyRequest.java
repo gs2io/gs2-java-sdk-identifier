@@ -31,41 +31,12 @@ public class CreateSecurityPolicyRequest extends Gs2BasicRequest<CreateSecurityP
 		public static final String FUNCTION = "CreateSecurityPolicy";
 	}
 
-	/** ポリシードキュメント */
-	private String policy;
-
 	/** 名前 */
 	private String name;
 
+	/** ポリシードキュメント */
+	private String policy;
 
-	/**
-	 * ポリシードキュメントを取得
-	 *
-	 * @return ポリシードキュメント
-	 */
-	public String getPolicy() {
-		return policy;
-	}
-
-	/**
-	 * ポリシードキュメントを設定
-	 *
-	 * @param policy ポリシードキュメント
-	 */
-	public void setPolicy(String policy) {
-		this.policy = policy;
-	}
-
-	/**
-	 * ポリシードキュメントを設定
-	 *
-	 * @param policy ポリシードキュメント
-	 * @return this
-	 */
-	public CreateSecurityPolicyRequest withPolicy(String policy) {
-		setPolicy(policy);
-		return this;
-	}
 
 	/**
 	 * 名前を取得
@@ -93,6 +64,35 @@ public class CreateSecurityPolicyRequest extends Gs2BasicRequest<CreateSecurityP
 	 */
 	public CreateSecurityPolicyRequest withName(String name) {
 		setName(name);
+		return this;
+	}
+
+	/**
+	 * ポリシードキュメントを取得
+	 *
+	 * @return ポリシードキュメント
+	 */
+	public String getPolicy() {
+		return policy;
+	}
+
+	/**
+	 * ポリシードキュメントを設定
+	 *
+	 * @param policy ポリシードキュメント
+	 */
+	public void setPolicy(String policy) {
+		this.policy = policy;
+	}
+
+	/**
+	 * ポリシードキュメントを設定
+	 *
+	 * @param policy ポリシードキュメント
+	 * @return this
+	 */
+	public CreateSecurityPolicyRequest withPolicy(String policy) {
+		setPolicy(policy);
 		return this;
 	}
 

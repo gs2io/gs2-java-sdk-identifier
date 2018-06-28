@@ -30,41 +30,59 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class SecurityPolicy implements Serializable {
 
-	/** 作成日時(エポック秒) */
-	private Integer createAt;
+	/** セキュリティポリシーID */
+	private String securityPolicyId;
+
+	/** オーナーID */
+	private String ownerId;
 
 	/** セキュリティポリシー名 */
 	private String name;
 
-	/** セキュリティポリシーID */
-	private String securityPolicyId;
-
 	/** ポリシードキュメント */
 	private String policy;
 
-	/** オーナーID */
-	private String ownerId;
+	/** 作成日時(エポック秒) */
+	private Integer createAt;
 
 	/** 最終更新日時(エポック秒) */
 	private Integer updateAt;
 
 
 	/**
-	 * 作成日時(エポック秒)を取得
+	 * セキュリティポリシーIDを取得
 	 *
-	 * @return 作成日時(エポック秒)
+	 * @return セキュリティポリシーID
 	 */
-	public Integer getCreateAt() {
-		return createAt;
+	public String getSecurityPolicyId() {
+		return securityPolicyId;
 	}
 
 	/**
-	 * 作成日時(エポック秒)を設定
+	 * セキュリティポリシーIDを設定
 	 *
-	 * @param createAt 作成日時(エポック秒)
+	 * @param securityPolicyId セキュリティポリシーID
 	 */
-	public void setCreateAt(Integer createAt) {
-		this.createAt = createAt;
+	public void setSecurityPolicyId(String securityPolicyId) {
+		this.securityPolicyId = securityPolicyId;
+	}
+
+	/**
+	 * オーナーIDを取得
+	 *
+	 * @return オーナーID
+	 */
+	public String getOwnerId() {
+		return ownerId;
+	}
+
+	/**
+	 * オーナーIDを設定
+	 *
+	 * @param ownerId オーナーID
+	 */
+	public void setOwnerId(String ownerId) {
+		this.ownerId = ownerId;
 	}
 
 	/**
@@ -86,24 +104,6 @@ public class SecurityPolicy implements Serializable {
 	}
 
 	/**
-	 * セキュリティポリシーIDを取得
-	 *
-	 * @return セキュリティポリシーID
-	 */
-	public String getSecurityPolicyId() {
-		return securityPolicyId;
-	}
-
-	/**
-	 * セキュリティポリシーIDを設定
-	 *
-	 * @param securityPolicyId セキュリティポリシーID
-	 */
-	public void setSecurityPolicyId(String securityPolicyId) {
-		this.securityPolicyId = securityPolicyId;
-	}
-
-	/**
 	 * ポリシードキュメントを取得
 	 *
 	 * @return ポリシードキュメント
@@ -122,21 +122,21 @@ public class SecurityPolicy implements Serializable {
 	}
 
 	/**
-	 * オーナーIDを取得
+	 * 作成日時(エポック秒)を取得
 	 *
-	 * @return オーナーID
+	 * @return 作成日時(エポック秒)
 	 */
-	public String getOwnerId() {
-		return ownerId;
+	public Integer getCreateAt() {
+		return createAt;
 	}
 
 	/**
-	 * オーナーIDを設定
+	 * 作成日時(エポック秒)を設定
 	 *
-	 * @param ownerId オーナーID
+	 * @param createAt 作成日時(エポック秒)
 	 */
-	public void setOwnerId(String ownerId) {
-		this.ownerId = ownerId;
+	public void setCreateAt(Integer createAt) {
+		this.createAt = createAt;
 	}
 
 	/**

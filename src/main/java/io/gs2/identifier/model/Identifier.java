@@ -30,21 +30,39 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Identifier implements Serializable {
 
+	/** ユーザGRN */
+	private String identifierId;
+
 	/** オーナーID */
 	private String ownerId;
-
-	/** 作成日時(エポック秒) */
-	private Integer createAt;
 
 	/** ユーザID */
 	private String userId;
 
-	/** ユーザGRN */
-	private String identifierId;
-
 	/** クライアントID */
 	private String clientId;
 
+	/** 作成日時(エポック秒) */
+	private Integer createAt;
+
+
+	/**
+	 * ユーザGRNを取得
+	 *
+	 * @return ユーザGRN
+	 */
+	public String getIdentifierId() {
+		return identifierId;
+	}
+
+	/**
+	 * ユーザGRNを設定
+	 *
+	 * @param identifierId ユーザGRN
+	 */
+	public void setIdentifierId(String identifierId) {
+		this.identifierId = identifierId;
+	}
 
 	/**
 	 * オーナーIDを取得
@@ -62,24 +80,6 @@ public class Identifier implements Serializable {
 	 */
 	public void setOwnerId(String ownerId) {
 		this.ownerId = ownerId;
-	}
-
-	/**
-	 * 作成日時(エポック秒)を取得
-	 *
-	 * @return 作成日時(エポック秒)
-	 */
-	public Integer getCreateAt() {
-		return createAt;
-	}
-
-	/**
-	 * 作成日時(エポック秒)を設定
-	 *
-	 * @param createAt 作成日時(エポック秒)
-	 */
-	public void setCreateAt(Integer createAt) {
-		this.createAt = createAt;
 	}
 
 	/**
@@ -101,24 +101,6 @@ public class Identifier implements Serializable {
 	}
 
 	/**
-	 * ユーザGRNを取得
-	 *
-	 * @return ユーザGRN
-	 */
-	public String getIdentifierId() {
-		return identifierId;
-	}
-
-	/**
-	 * ユーザGRNを設定
-	 *
-	 * @param identifierId ユーザGRN
-	 */
-	public void setIdentifierId(String identifierId) {
-		this.identifierId = identifierId;
-	}
-
-	/**
 	 * クライアントIDを取得
 	 *
 	 * @return クライアントID
@@ -134,6 +116,24 @@ public class Identifier implements Serializable {
 	 */
 	public void setClientId(String clientId) {
 		this.clientId = clientId;
+	}
+
+	/**
+	 * 作成日時(エポック秒)を取得
+	 *
+	 * @return 作成日時(エポック秒)
+	 */
+	public Integer getCreateAt() {
+		return createAt;
+	}
+
+	/**
+	 * 作成日時(エポック秒)を設定
+	 *
+	 * @param createAt 作成日時(エポック秒)
+	 */
+	public void setCreateAt(Integer createAt) {
+		this.createAt = createAt;
 	}
 
 }
